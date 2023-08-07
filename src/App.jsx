@@ -10,6 +10,7 @@ function App(){
         todos:{
             todoList:[],
             itemToAdd:"",
+            dots:"",
             showCompleted:false,
             newTodo:{
                 title:"",

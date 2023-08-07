@@ -8,11 +8,9 @@ export default function Navigation(){
     return(
     <>
     <nav>
-        <ul>
-            <li><Link to={'/'}>HOME</Link></li>
-            <li><Link to={'/todo'}>To do list</Link></li>
-            <li><Link to={'/notes'}>Notes</Link></li>
-        </ul>
+        <li><Link to={'/'}>HOME</Link></li>
+        <li><Link to={'/todo'}>TO DO LIST</Link></li>
+        <li><Link to={'/notes'}>NOTES</Link></li>
     </nav>
 <Routes>
     <Route path="/" element={<Home/>}/>
