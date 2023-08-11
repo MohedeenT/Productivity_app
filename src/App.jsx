@@ -10,12 +10,21 @@ function App(){
         todos:{
             todoList:[],
             itemToAdd:"",
-            dots:"",
             showCompleted:false,
             newTodo:{
                 title:"",
                 completed:false,
                 id:""
+            }
+        },
+        notes:{
+            notesList:[],
+            showArchived:false,
+            newNote:{
+                noteTitle:"",
+                content:"",
+                archived:false,
+                noteId:""
             }
         }
     })
