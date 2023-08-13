@@ -3,7 +3,8 @@ import { stateContext } from "../App";
 
 // notes:{
 //     notesList:[],
-//     noteToAdd:"",
+//     noteToAddTitle:"",
+//     noteToAddContent:"",
 //     showArchived:false,
 //     newNote:{
 //         noteTitle:"",
@@ -22,17 +23,33 @@ export default function Notes() {
         setState((draft)=>{
             const newNote = {
                 ...state.notes.newNote,
-                noteTitle:state.notes.newNote.noteTitle,
-                content:state.notes.newNote.content,
+                noteTitle:state.notes.noteToAddTitle,
+                content:state.notes.noteToAddContent,
                 noteId:crypto.randomUUID()
             }
+            const title = state.notes.noteToAddTitle.replace(/\s/g, '');
+            const content = state.notes.noteToAddContent.replace(/\s/g, '');
+
+            if (title.length === 0 && content.length === 0) {
+                return
+            }
             draft.notes.notesList.push(newNote)
-            draft.notes.newNote.content =""
-            draft.notes.newNote.noteTitle =""
+            draft.notes.noteToAddTitle =""
+            draft.notes.noteToAddContent =""
 
         })
 
     }
+
+    const deleteNote=(IdnoteToDelete, index)=>{
+    setState((draft) => {
+        draft.notes.notesList[index].archived ?
+        draft.notes.notesList = draft.notes.notesList.filter((note)=> note.noteId !== IdnoteToDelete)
+        :
+        draft.notes.notesList[index].archived = true
+    })
+}
+
 
     return(
     <>
@@ -43,18 +60,20 @@ export default function Notes() {
         >
             <div id="inputs-container">
             <input 
-            value={state.notes.newNote.noteTitle}
+            value={state.notes.noteToAddTitle}
+            required={true}
             placeholder="enter note title"
             onChange={(e)=>setState((draft)=>{
-                draft.notes.newNote.noteTitle = e.target.value
+                draft.notes.noteToAddTitle = e.target.value
             })}
             id="note-title"
             type="text" />
             <textarea 
-            value={state.notes.newNote.content}
+            value={state.notes.noteToAddContent}
+            required={true}
             placeholder="start typing your note"
             onChange={(e)=>setState((draft)=>{
-                draft.notes.newNote.content = e.target.value
+                draft.notes.noteToAddContent = e.target.value
             })}
             id="note-content"
             type="text" />
@@ -66,14 +85,24 @@ export default function Notes() {
             >Create Note</button>
             </div>
         </form>
+            {state.notes.notesList.some((note)=>note.archived === true) && 
+            <div
+            className="action-btns">
+            <button
+            onClick={()=>setState((draft)=>{draft.notes.showArchived = !draft.notes.showArchived})}
+            >{state.notes.showArchived ? "Hide":"Show"} Archived</button></div>}
     </div>
     <div
     id="notes-field">
+        {state.notes.notesList.length === 0 && state.notes.showArchived === false && <span style={{textAlign:"center",width:"100%"}}><h2>No notes to display</h2></span>}
         {state.notes.notesList.length >0 && state.notes.notesList.map((note, index)=>(
             <div
+            style={note.archived && !state.notes.showArchived?{display:"none"}:note.archived ? {background: "linear-gradient(gray, lightgray)"}:{}}
             className="note-container"
             key={`note-${index}`}>
                 <button
+                style={note.archived ? {backgroundColor:"gray",border:"gray"}:{}}
+                onClick={()=>deleteNote(note.noteId, index)}
                 className="delete-note">
                     X
                 </button>

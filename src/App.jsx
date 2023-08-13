@@ -20,6 +20,8 @@ function App(){
         notes:{
             notesList:[],
             showArchived:false,
+            noteToAddTitle:"",
+            noteToAddContent:"",
             newNote:{
                 noteTitle:"",
                 content:"",
