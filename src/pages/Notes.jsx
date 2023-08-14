@@ -101,7 +101,7 @@ export default function Notes() {
             className="note-container"
             key={`note-${index}`}>
                 <button
-                style={note.archived ? {backgroundColor:"gray",border:"gray"}:{}}
+                style={note.archived ? {backgroundColor:"gray",border:"gray"}:{backgroundColor:"#1196a0",border:"#1196a0"}}
                 onClick={()=>deleteNote(note.noteId, index)}
                 className="delete-note">
                     X

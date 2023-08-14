@@ -1,47 +1,72 @@
+import { useContext } from "react";
+import { stateContext } from "../App";
+
 export default function TimeManagement(){
 
-    let interval;
-    let time = 0;
+    const { state, setState } = useContext(stateContext);
 
     function startTimer() {
         // Check if timer is already running
-        if (interval) {
-            return;
+        if (state.time.interval) {
+            return
         }
+        setState((draft)=>{
+            draft.time.currentTime = draft.time.currentTime+1
+        })
+        
+        resetTimer()
+        const id = setInterval(() => {
 
-        interval = setInterval(function() {
-            time++;
-
-            const minutes = Math.floor(time / 60);
-            const seconds = time % 60;
-
-            // Display the result in the element with id="timer"
-            document.getElementById('timer').textContent = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            setState((draft)=>{
+                draft.time.currentTime ++ 
+                const minutes = Math.floor(draft.time.currentTime / 60);
+                const seconds = draft.time.currentTime % 60;
+                draft.time.minutes = minutes;
+                draft.time.seconds = seconds < 10 ? '0' + seconds : seconds;
+            })
+                return state.time.currentTime;
+            
         }, 1000);
+
+        setState((draft)=>{
+            draft.time.interval = id
+        })
+        
+
     }
 
-function stopTimer() {
-    clearInterval(interval);
-    interval = null;
-}
+    const stopTimer = () => {
+        if (state.time.interval) {
+            clearInterval(state.time.interval);
+            setState(draft => {
+                draft.time.interval = null;
+            });
+        }
+    }
 
 const resetTimer = () =>{
-    time=0
+    setState((draft)=>{
+        draft.time.minutes = 0
+        draft.time.seconds = "00"
+        draft.time.currentTime = 0
+    })
+}
+
+const handleClick = (btnVal)=>{
+    setState((draft)=>{draft.time.timerRunning = !draft.time.timerRunning})
+    btnVal === "START TIMER"  ? startTimer():stopTimer()
 }
 
 
     return (
         <div
         id="timer-container">  
-        <div id="timer">0:0{time}</div>
+        <div id="timer">{state.time.minutes}:{state.time.seconds}</div>
         <div
         className="action-btns">
-        <button onClick={()=>startTimer()}>Start Timer</button>
-        <button onClick={()=>stopTimer()}>Stop Timer</button>
+        <button onClick={(e)=>handleClick(e.target.innerText)}>{state.time.timerRunning? "Stop":"Start"} Timer</button>
         <button onClick={()=>resetTimer()}>Reset Timer</button>
         </div>
         </div>
     )
 }
-
-//to fix: use state to manipulate time

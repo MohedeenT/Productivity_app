@@ -28,6 +28,13 @@ function App(){
                 archived:false,
                 noteId:""
             }
+        },
+        time:{
+            interval:null,
+            currentTime:0,
+            minutes:0,
+            seconds:"00",
+            timerRunning:false
         }
     })
 
