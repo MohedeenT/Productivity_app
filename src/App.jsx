@@ -35,6 +35,10 @@ function App(){
             minutes:0,
             seconds:"00",
             timerRunning:false
+        },
+        counter:{
+            counterList:[],
+            newCounterName:""
         }
     })
 

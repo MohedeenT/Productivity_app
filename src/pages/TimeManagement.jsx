@@ -10,11 +10,6 @@ export default function TimeManagement(){
         if (state.time.interval) {
             return
         }
-        setState((draft)=>{
-            draft.time.currentTime = draft.time.currentTime+1
-        })
-        
-        resetTimer()
         const id = setInterval(() => {
 
             setState((draft)=>{
