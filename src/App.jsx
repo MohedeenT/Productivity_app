@@ -39,6 +39,12 @@ function App(){
         counter:{
             counterList:[],
             newCounterName:""
+        },
+        calculator:{
+            display:0,
+            currentVal:"",
+            currentOperator:"",
+            nextVal:""
         }
     })
 

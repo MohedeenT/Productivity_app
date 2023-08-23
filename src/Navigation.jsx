@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import TimeManagement from "./pages/TimeManagement";
 import Counter from "./pages/Counter";
+import Calculator from "./pages/Calculator";
 
 export default function Navigation(){
     return(
@@ -15,6 +16,7 @@ export default function Navigation(){
         <li><Link to={'/notes'}>NOTES</Link></li>
         <li><Link to={'/timeManagement'}>TIME MANAGEMENT</Link></li>
         <li><Link to={'/counter'}>COUNTER</Link></li>
+        <li><Link to={'/calculator'}>CALCULATOR</Link></li>
     </nav>
 <Routes>
     <Route path="/" element={<Home/>}/>
@@ -22,6 +24,7 @@ export default function Navigation(){
     <Route path="/notes" element={<Notes/>}/>
     <Route path="/timeManagement" element={<TimeManagement/>}/>
     <Route path="/counter" element={<Counter/>}/>
+    <Route path="/calculator" element={<Calculator/>}/>
     <Route path="/*" element={<NotFound/>}/>
 </Routes>
 </>)
