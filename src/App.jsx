@@ -42,9 +42,11 @@ function App(){
         },
         calculator:{
             display:0,
-            currentVal:"",
+            leftOperand:"",
             currentOperator:"",
-            nextVal:""
+            rightOperand:"",
+            prevRight:"",
+            prevOperator:""
         }
     })
 
