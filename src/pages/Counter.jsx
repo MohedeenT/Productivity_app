@@ -45,7 +45,7 @@ export default function Counter(){
         <div
         id="counter-setup"
         >
-        <h1>Welcome to Counter</h1>
+        <h1>Counter</h1>
         <form 
         action="submit"
         onSubmit={(e)=>addCounter(e)}>

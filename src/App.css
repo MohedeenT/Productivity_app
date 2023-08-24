@@ -443,6 +443,18 @@ nav a:active {
 /*The Apple Calculator App Icon 2017 Color Scheme palette has 4 colors
  which are Light Gray (#D4D4D2), Eerie Black (#1C1C1C), Dark Liver (#505050) and Vivid Gamboge (#FF9500).*/
 
+.calculator-container {
+  text-align: center;
+}
+.calculator-container input {
+  width: 19%;
+  background: none;
+  border: none;
+  text-align: right;
+  font-size: 36px;
+  color: white;
+}
+
 .calc-btns button {
   border-radius: 50px;
   border-style: none;
@@ -476,6 +488,18 @@ nav a:active {
 }
 
 .main-btns,
-.special-btns {
-  transition: background-color 1s;
+.special-btns,
+#equals {
+  transition: background-color 0.7s;
+}
+
+.main-btns:active {
+  transition: background-color 0.2s;
+  background-color: #505050;
+}
+
+.special-btns:active,
+#equals:active {
+  transition: background-color 0.2s;
+  background-color: white;
 }

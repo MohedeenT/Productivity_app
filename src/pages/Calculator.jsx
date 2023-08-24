@@ -17,17 +17,21 @@ export default function Calculator(){
     const stage = (value)=>{
         //value comes in as a string
         const dot = value === "."
+        const zero = value === "0"
         
         !state.calculator.currentOperator ?
         // if there is no operator
         setState((draft)=>{
             if (dot) {
-                if (state.calculator.leftOperand.includes(".")) {
+                if (String(draft.calculator.leftOperand).includes(".")) {
                     return
                 }
-                if (state.calculator.leftOperand === "") {
+                if (draft.calculator.leftOperand === "") {
                     value = "0."                    
                 }
+            }
+            if (zero) {
+                if(draft.calculator.leftOperand === "0") return
             }
             draft.calculator.leftOperand += value
             draft.calculator.display = draft.calculator.leftOperand
@@ -36,12 +40,15 @@ export default function Calculator(){
         // if there is an operator
         setState((draft)=>{
             if (dot) {
-                if (state.calculator.rightOperand.includes(".")) {
+                if (String(draft.calculator.rightOperand).includes(".")) {
                     return
                 }
-                if (state.calculator.rightOperand === "") {
+                if (draft.calculator.rightOperand === "") {
                     value = "0."                    
                 }
+            }
+            if (zero) {
+                if(draft.calculator.rightOperand === "0") return
             }
             draft.calculator.rightOperand += value
             draft.calculator.display = draft.calculator.rightOperand
@@ -94,7 +101,7 @@ export default function Calculator(){
                 switch (draft.calculator.prevOperator) {
                     case "+":
                         setState((draft)=>{
-                            draft.calculator.display += draft.calculator.prevRight
+                            draft.calculator.display = +draft.calculator.display + +draft.calculator.prevRight
                         })
                         break;
                     case "-":
@@ -171,7 +178,7 @@ export default function Calculator(){
         !state.calculator.currentOperator ?
         setState((draft)=>{
             draft.calculator.display /= 100
-            if(draft.calculator.leftOperand)draft.calculator.leftOperand /= 100
+            draft.calculator.leftOperand = draft.calculator.display
         })
         :
         state.calculator.rightOperand ?
@@ -195,9 +202,9 @@ export default function Calculator(){
 
     return(
     <>
-    <h1>CALCULATOR</h1>
     <div
     className="calculator-container">
+        <h1>Calculator</h1>
         <div>
             <input
             value={state.calculator.display}
@@ -219,6 +226,7 @@ export default function Calculator(){
         >%</button>
         <button
         className="operator-btns"
+        style={!state.calculator.rightOperand && state.calculator.currentOperator === '/' ? {backgroundColor:"white",color:"#ff9500"}:{}}
         onClick={(e)=>setOperator(e.target.innerText)}
         >/</button>
         </div>
@@ -239,6 +247,7 @@ export default function Calculator(){
         >9</button>
         <button
         className="operator-btns"
+        style={!state.calculator.rightOperand && state.calculator.currentOperator === 'x' ? {backgroundColor:"white",color:"#ff9500"}:{}}
         onClick={(e)=>setOperator(e.target.innerText)}
         >x</button>
         </div>
@@ -259,6 +268,7 @@ export default function Calculator(){
         >6</button>
         <button
         className="operator-btns"
+        style={!state.calculator.rightOperand && state.calculator.currentOperator === '-' ? {backgroundColor:"white",color:"#ff9500"}:{}}
         onClick={(e)=>setOperator(e.target.innerText)}
         >-</button>
         </div>
@@ -279,6 +289,7 @@ export default function Calculator(){
         >3</button>
         <button
         className="operator-btns"
+        style={!state.calculator.rightOperand && state.calculator.currentOperator === '+' ? {backgroundColor:"white",color:"#ff9500"}:{}}
         onClick={(e)=>setOperator(e.target.innerText)}
         >+</button>
         </div>
@@ -296,6 +307,7 @@ export default function Calculator(){
         >.</button>
         <button
         className="operator-btns"
+        id="equals"
         onClick={()=>evaluate()}
         >=</button>
         </div>

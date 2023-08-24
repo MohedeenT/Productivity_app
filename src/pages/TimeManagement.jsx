@@ -56,6 +56,7 @@ const handleClick = (btnVal)=>{
     return (
         <div
         id="timer-container">  
+        <h1>Timer</h1>
         <div id="timer">{state.time.minutes}:{state.time.seconds}</div>
         <div
         className="action-btns">
