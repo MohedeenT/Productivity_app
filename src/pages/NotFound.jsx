@@ -8,7 +8,7 @@ export default function NotFound() {
     useEffect(()=>{
         setTimeout(()=>{
             navigate("/")
-        },1500)
+        },100)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 

@@ -4,11 +4,9 @@ body {
 footer {
   color: black;
   text-align: center;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-top: auto;
+  position: relative;
   width: 100%;
+  bottom: 0;
 }
 /*Nav*/
 nav {
@@ -74,6 +72,76 @@ nav a:hover {
 }
 nav a:active {
   transform: translateY(2px); /* 'pushes' the button down */
+}
+
+/* Styles for screens below 768px in width */
+@media (max-width: 767px) {
+  nav {
+    /* changes for smaller screens */
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    margin: 5px 0;
+    font-size: 18px;
+  }
+
+  .desktop-only li {
+    display: none;
+  }
+
+  #burger-menu-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+
+  #burger-menu-container select {
+    text-align: center;
+    border-style: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none; /* Remove the default arrow in some browsers */
+    background-color: inherit;
+    width: 400px;
+    text-align-last: center;
+    margin: 1em;
+  }
+
+  #hamburger-menu {
+    display: block;
+    text-align: center;
+  }
+  .content {
+    font-size: 50%;
+    height: 100%;
+  }
+  #description {
+    height: auto;
+    width: auto;
+  }
+  #todo-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #todo-block {
+    width: 60%;
+    text-align: center;
+  }
+  #to-do-input {
+    min-width: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  #hamburger-menu {
+    display: none;
+  }
 }
 
 /*header-and-input*/
@@ -416,7 +484,7 @@ nav a:active {
 #counter-setup input {
   border-radius: 1em;
   border-style: none;
-  width: 13%;
+  width: auto;
   height: 25px;
 }
 .counter-container {

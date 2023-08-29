@@ -50,7 +50,8 @@ export default function Counter(){
         action="submit"
         onSubmit={(e)=>addCounter(e)}>
         <input
-        placeholder="Enter a name for your new counter"
+        style={{textAlign:'center'}}
+        placeholder="Enter counter name"
         value={state.counter.newCounterName}
         onChange={(e)=>setState((draft)=>{draft.counter.newCounterName = e.target.value})}
         type="text" />
