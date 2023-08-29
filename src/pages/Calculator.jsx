@@ -31,7 +31,7 @@ export default function Calculator(){
                 }
             }
             if (zero) {
-                if(draft.calculator.leftOperand === "0") return
+                if(draft.calculator.leftOperand === "0" || draft.calculator.leftOperand === "" ) return
             }
             draft.calculator.leftOperand += value
             draft.calculator.display = draft.calculator.leftOperand
@@ -49,6 +49,11 @@ export default function Calculator(){
             }
             if (zero) {
                 if(draft.calculator.rightOperand === "0") return
+            }
+            if(draft.calculator.rightOperand === "0" && value !== "0"){
+                draft.calculator.rightOperand = value
+                draft.calculator.display = draft.calculator.rightOperand
+                return
             }
             draft.calculator.rightOperand += value
             draft.calculator.display = draft.calculator.rightOperand
