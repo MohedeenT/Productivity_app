@@ -210,7 +210,9 @@ export default function Calculator(){
     <div
     className="calculator-container">
         <h1>Calculator</h1>
-        <div>
+        <div
+        id="calc-display"
+        >
             <input
             value={state.calculator.display}
             disabled={true} />

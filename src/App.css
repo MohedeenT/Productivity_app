@@ -512,10 +512,16 @@ nav a:active {
  which are Light Gray (#D4D4D2), Eerie Black (#1C1C1C), Dark Liver (#505050) and Vivid Gamboge (#FF9500).*/
 
 .calculator-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  width: fit-content;
+  margin: auto;
 }
 .calculator-container input {
-  width: 19%;
+  width: 60%;
   background: none;
   border: none;
   text-align: right;
