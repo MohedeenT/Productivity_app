@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Productivity_app/static/css/main.6b1e8dcb.css",
-    "main.js": "/Productivity_app/static/js/main.9b0e55b1.js",
+    "main.css": "/Productivity_app/static/css/main.4452b965.css",
+    "main.js": "/Productivity_app/static/js/main.5cb1f57d.js",
     "index.html": "/Productivity_app/index.html",
-    "main.6b1e8dcb.css.map": "/Productivity_app/static/css/main.6b1e8dcb.css.map",
-    "main.9b0e55b1.js.map": "/Productivity_app/static/js/main.9b0e55b1.js.map"
+    "main.4452b965.css.map": "/Productivity_app/static/css/main.4452b965.css.map",
+    "main.5cb1f57d.js.map": "/Productivity_app/static/js/main.5cb1f57d.js.map"
   },
   "entrypoints": [
-    "static/css/main.6b1e8dcb.css",
-    "static/js/main.9b0e55b1.js"
+    "static/css/main.4452b965.css",
+    "static/js/main.5cb1f57d.js"
   ]
 }
