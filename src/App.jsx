@@ -6,7 +6,6 @@ const stateContext = createContext();
 
 function App(){
 
-    
     const [state, setState] = useImmer(()=>{
     const localValues = localStorage.getItem("ITEMS")
         return localValues ? JSON.parse(localValues):{
@@ -61,7 +60,7 @@ function App(){
 
     return (
         <stateContext.Provider value={{state,setState}}>
-        <Navigation/>
+            <Navigation/>
         </stateContext.Provider>
 
         )

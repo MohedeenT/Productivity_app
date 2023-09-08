@@ -1,4 +1,4 @@
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import ToDos from "./pages/ToDos";
 import Notes from "./pages/Notes";
 import Home from "./pages/Home";
@@ -7,6 +7,7 @@ import TimeManagement from "./pages/TimeManagement";
 import Counter from "./pages/Counter";
 import Calculator from "./pages/Calculator";
 import { useEffect, useState } from "react";
+import '../src/App.css'
 
 
 
@@ -23,13 +24,21 @@ export default function Navigation(){
     return(
     <>
     <nav className="desktop-only">
-        <li><Link to={'/'}>HOME</Link></li>
-        <li><Link to={'/todo'}>TO DO LIST</Link></li>
-        <li><Link to={'/notes'}>NOTES</Link></li>
-        <li><Link to={'/timeManagement'}>TIME MANAGEMENT</Link></li>
-        <li><Link to={'/counter'}>COUNTER</Link></li>
-        <li><Link to={'/calculator'}>CALCULATOR</Link></li>
+        <div>
+        <li><NavLink to={'/'}>HOME</NavLink></li>
+        <li><NavLink to={'/todo'}>TO DO LIST</NavLink></li>
+        </div>
+        <div>
+        <li><NavLink to={'/notes'}>NOTES</NavLink></li>
+        <li><NavLink to={'/timeManagement'}>TIME MANAGEMENT</NavLink></li>
+        </div>
+        <div>
+        <li><NavLink to={'/counter'}>COUNTER</NavLink></li>
+        <li><NavLink to={'/calculator'}>CALCULATOR</NavLink></li>
+        </div>
     </nav>
+    <div id="border">
+    </div>
     <div id="burger-menu-container">
     <select name="hamburger-menu" id="hamburger-menu" onChange={(e)=>setPage(e.target.value)} >
         <option value="">HOME</option>
